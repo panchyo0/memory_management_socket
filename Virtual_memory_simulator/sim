@@ -1,0 +1,15 @@
+#!/bin/bash
+# use predefined variables to access passed arguments
+#echo arguments to the shell
+echo $1 $2 $3 ' -> echo framesize; window size;  name of process'
+
+# We can also store arguments from bash command line in special array
+args=("$@")
+#echo arguments to the shell
+echo ${args[0]} ${args[1]} ${args[2]} ' -> args=("$@"); echo ${args[0]} ${args[1]} ${args[2]}'
+
+#use $@ to print out all arguments at once
+#echo $@ ' -> echo $@'
+make $3
+./$3 $1 $2
+

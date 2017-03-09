@@ -1,0 +1,24 @@
+#!/bin/bash
+# use predefined variables to access passed arguments
+#echo arguments to the shell
+echo $1 #' -> echo framesize; window size;  name of process'
+
+# We can also store arguments from bash command line in special array
+args=("$@")
+WINDOWSIZE=(128 256 512 1024 2048 4096 8192 16384)
+PAGESIZE=(64 128 256 512)
+#echo arguments to the shell
+#echo ${args[0]} ${args[1]} ${args[2]} ' -> args=("$@"); echo ${args[0]} ${args[1]} ${args[2]}'
+
+#use $@ to print out all arguments at once
+#echo $@ ' -> echo $@'
+ELEMENTS1=${#PAGESIZE[@]}
+ELEMENTS2=${#WINDOWSIZE[@]}
+make $1
+for ((i=0;i < $ELEMENTS1;i++)); do
+  
+  for ((j=0;j < $ELEMENTS2;j++));do
+    echo ${PAGESIZE[${i}]} ${WINDOWSIZE[${j}]} 
+    ./$1 ${PAGESIZE[${i}]} ${WINDOWSIZE[${j}]}
+  done
+done
